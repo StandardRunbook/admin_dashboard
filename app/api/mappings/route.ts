@@ -6,14 +6,14 @@ export async function GET() {
     const result = await clickhouse.query({
       query: `
         SELECT
-          mm.id,
-          mm.created_at,
+          mm.id as id,
+          mm.created_at as created_at,
           o.name as org,
           m.dashboard_name as dashboardName,
           m.panel_title as panelTitle,
           m.metric_name as metricName,
-          ls.service,
-          ls.region,
+          ls.service as service,
+          ls.region as region,
           ls.log_stream_name as logStreamName
         FROM (
           SELECT id, created_at, org_id, metric_id, log_stream_id, is_active

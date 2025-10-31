@@ -15,22 +15,22 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
   if (mappings.length === 0) {
     return (
       <div style={{
-        backgroundColor: '#ffffff',
+        backgroundColor: '#1a1a1a',
         borderRadius: '12px',
         padding: '48px',
-        border: '1px solid #e2e8f0',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
         textAlign: 'center',
       }}>
-        <p style={{ fontSize: '14px', color: '#64748b' }}>No mappings created yet</p>
+        <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)' }}>No mappings created yet</p>
       </div>
     );
   }
 
   return (
     <div style={{
-      backgroundColor: '#ffffff',
+      backgroundColor: '#1a1a1a',
       borderRadius: '12px',
-      border: '1px solid #e2e8f0',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
       overflow: 'hidden',
     }}>
       {mappings.map((mapping, index) => {
@@ -44,15 +44,15 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
               style={{
                 padding: '16px 20px',
                 cursor: 'pointer',
-                borderBottom: index < mappings.length - 1 ? '1px solid #f1f5f9' : 'none',
+                borderBottom: index < mappings.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
                 transition: 'background-color 0.15s',
-                backgroundColor: isExpanded ? '#f8fafc' : '#ffffff',
+                backgroundColor: isExpanded ? '#252525' : '#1a1a1a',
               }}
               onMouseEnter={(e) => {
-                if (!isExpanded) e.currentTarget.style.backgroundColor = '#f8fafc';
+                if (!isExpanded) e.currentTarget.style.backgroundColor = '#252525';
               }}
               onMouseLeave={(e) => {
-                if (!isExpanded) e.currentTarget.style.backgroundColor = '#ffffff';
+                if (!isExpanded) e.currentTarget.style.backgroundColor = '#1a1a1a';
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -60,20 +60,20 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
                   <ChevronRight style={{
                     width: '18px',
                     height: '18px',
-                    color: '#94a3b8',
+                    color: 'rgba(255, 255, 255, 0.5)',
                     transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
                     transition: 'transform 0.2s',
                   }} />
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
-                      <span style={{ fontSize: '15px', fontWeight: '600', color: '#0f172a' }}>
+                      <span style={{ fontSize: '15px', fontWeight: '600', color: '#ffffff' }}>
                         {mapping.org} / {mapping.dashboardName}
                       </span>
-                      <span style={{ fontSize: '13px', color: '#64748b' }}>
+                      <span style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.6)' }}>
                         • {mapping.panelTitle}
                       </span>
                     </div>
-                    <div style={{ fontSize: '13px', color: '#64748b', fontFamily: 'monospace' }}>
+                    <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.5)', fontFamily: 'monospace' }}>
                       {mapping.metricName} → {mapping.service}
                     </div>
                   </div>
@@ -112,25 +112,25 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
             {isExpanded && (
               <div style={{
                 padding: '20px',
-                backgroundColor: '#f8fafc',
-                borderBottom: index < mappings.length - 1 ? '1px solid #f1f5f9' : 'none',
+                backgroundColor: '#252525',
+                borderBottom: index < mappings.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
               }}>
                 {/* Content Grid */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                   {/* Metric */}
                   <div>
-                    <h4 style={{ fontSize: '12px', fontWeight: '600', color: '#64748b', marginBottom: '8px' }}>
+                    <h4 style={{ fontSize: '12px', fontWeight: '600', color: 'rgba(255, 255, 255, 0.5)', marginBottom: '8px' }}>
                       METRIC
                     </h4>
                     <code style={{
                       display: 'block',
-                      backgroundColor: '#ffffff',
+                      backgroundColor: '#1a1a1a',
                       padding: '8px 12px',
                       borderRadius: '6px',
                       fontSize: '13px',
                       fontFamily: 'monospace',
-                      color: '#0f172a',
-                      border: '1px solid #e2e8f0',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
                     }}>
                       {mapping.metricName}
                     </code>
@@ -138,28 +138,28 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
 
                   {/* Log Stream */}
                   <div>
-                    <h4 style={{ fontSize: '12px', fontWeight: '600', color: '#64748b', marginBottom: '8px' }}>
+                    <h4 style={{ fontSize: '12px', fontWeight: '600', color: 'rgba(255, 255, 255, 0.5)', marginBottom: '8px' }}>
                       LOG STREAM
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#64748b' }}>Service</span>
-                        <span style={{ fontWeight: '500', color: '#0f172a' }}>{mapping.service}</span>
+                        <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>Service</span>
+                        <span style={{ fontWeight: '500', color: '#ffffff' }}>{mapping.service}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#64748b' }}>Region</span>
-                        <span style={{ fontWeight: '500', color: '#0f172a' }}>{mapping.region}</span>
+                        <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>Region</span>
+                        <span style={{ fontWeight: '500', color: '#ffffff' }}>{mapping.region}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
-                        <span style={{ color: '#64748b' }}>Stream</span>
+                        <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>Stream</span>
                         <code style={{
-                          backgroundColor: '#ffffff',
+                          backgroundColor: '#1a1a1a',
                           padding: '4px 8px',
                           borderRadius: '4px',
                           fontSize: '12px',
                           fontFamily: 'monospace',
-                          color: '#0f172a',
-                          border: '1px solid #e2e8f0',
+                          color: '#ffffff',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
                         }}>
                           {mapping.logStreamName}
                         </code>
@@ -172,9 +172,9 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
                 <div style={{
                   marginTop: '16px',
                   paddingTop: '16px',
-                  borderTop: '1px solid #e2e8f0',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
                   fontSize: '12px',
-                  color: '#94a3b8',
+                  color: 'rgba(255, 255, 255, 0.4)',
                 }}>
                   Created {mapping.createdAt.toLocaleDateString()} at {mapping.createdAt.toLocaleTimeString()}
                 </div>

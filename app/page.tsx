@@ -85,57 +85,98 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="border-b border-white/10 backdrop-blur-xl bg-background/80 sticky top-0 z-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex h-16 items-center">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-stripe flex items-center justify-center">
-                <Activity className="h-4 w-4 text-white" />
+    <div style={{ minHeight: '100vh', backgroundColor: '#0a0a0a' }}>
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        backgroundColor: 'rgba(10, 10, 10, 0.8)',
+        backdropFilter: 'blur(12px)',
+      }}>
+        <div style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 24px',
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '64px',
+            justifyContent: 'space-between',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <Activity style={{ width: '18px', height: '18px', color: '#ffffff' }} />
               </div>
-              <span className="font-semibold">Metrics Dashboard</span>
+              <span style={{
+                fontSize: '20px',
+                fontWeight: '600',
+                color: '#ffffff',
+                letterSpacing: '-0.02em',
+              }}>Hover</span>
             </div>
-          </div>
-        </div>
-      </nav>
-
-      <main className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-mesh opacity-30" />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold tracking-tight mb-2 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-              Metric Mappings
-            </h1>
-          </div>
-
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold">All Active Mappings</h2>
             <a
               href="/create-mapping"
               style={{
-                padding: '10px 20px',
+                padding: '8px 16px',
                 backgroundColor: '#4f46e5',
                 color: '#ffffff',
                 fontSize: '14px',
-                fontWeight: '600',
+                fontWeight: '500',
                 borderRadius: '8px',
                 textDecoration: 'none',
-                display: 'inline-block',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                transition: 'all 0.2s',
               }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4f46e5'}
             >
-              + Create New Mapping
+              + New Mapping
             </a>
+          </div>
+        </div>
+      </nav>
+
+      <main style={{ padding: '40px 24px' }}>
+        <div style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+        }}>
+          <div style={{ marginBottom: '32px' }}>
+            <h1 style={{
+              fontSize: '32px',
+              fontWeight: '700',
+              color: '#ffffff',
+              marginBottom: '8px',
+              letterSpacing: '-0.02em',
+            }}>
+              Metric Mappings
+            </h1>
+            <p style={{
+              fontSize: '15px',
+              color: 'rgba(255, 255, 255, 0.6)',
+            }}>
+              Connect metrics to log streams for seamless tracking
+            </p>
           </div>
 
           {/* Filters */}
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: '#1a1a1a',
             borderRadius: '12px',
             padding: '20px',
-            border: '1px solid #e2e8f0',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             marginBottom: '24px',
           }}>
             {/* Search Bar */}
@@ -148,7 +189,7 @@ export default function Home() {
                   transform: 'translateY(-50%)',
                   width: '16px',
                   height: '16px',
-                  color: '#94a3b8',
+                  color: 'rgba(255, 255, 255, 0.4)',
                   pointerEvents: 'none',
                   zIndex: 1,
                 }} />
@@ -161,9 +202,9 @@ export default function Home() {
                     width: '100%',
                     padding: '10px 12px 10px 36px',
                     fontSize: '14px',
-                    color: '#0f172a',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #cbd5e1',
+                    color: '#ffffff',
+                    backgroundColor: '#252525',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '8px',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -181,9 +222,9 @@ export default function Home() {
                 style={{
                   padding: '10px 12px',
                   fontSize: '14px',
-                  color: '#0f172a',
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #cbd5e1',
+                  color: '#ffffff',
+                  backgroundColor: '#252525',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '8px',
                   outline: 'none',
                   cursor: 'pointer',
@@ -202,9 +243,9 @@ export default function Home() {
                 style={{
                   padding: '10px 12px',
                   fontSize: '14px',
-                  color: '#0f172a',
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #cbd5e1',
+                  color: '#ffffff',
+                  backgroundColor: '#252525',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '8px',
                   outline: 'none',
                   cursor: 'pointer',
@@ -223,9 +264,9 @@ export default function Home() {
                 style={{
                   padding: '10px 12px',
                   fontSize: '14px',
-                  color: '#0f172a',
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #cbd5e1',
+                  color: '#ffffff',
+                  backgroundColor: '#252525',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '8px',
                   outline: 'none',
                   cursor: 'pointer',
@@ -241,17 +282,18 @@ export default function Home() {
             {/* Active Filters Display */}
             {(searchQuery || selectedOrg || selectedService || selectedRegion) && (
               <div style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <span style={{ fontSize: '13px', color: '#64748b', fontWeight: '500' }}>Active filters:</span>
+                <span style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.5)', fontWeight: '500' }}>Active filters:</span>
                 {searchQuery && (
                   <span style={{
                     padding: '4px 10px',
-                    backgroundColor: '#f1f5f9',
-                    color: '#0f172a',
+                    backgroundColor: '#252525',
+                    color: '#ffffff',
                     fontSize: '13px',
                     borderRadius: '6px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}>
                     Search: "{searchQuery}"
                     <button
@@ -259,7 +301,7 @@ export default function Home() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#64748b',
+                        color: 'rgba(255, 255, 255, 0.5)',
                         cursor: 'pointer',
                         padding: '0',
                         fontSize: '16px',
@@ -271,13 +313,14 @@ export default function Home() {
                 {selectedOrg && (
                   <span style={{
                     padding: '4px 10px',
-                    backgroundColor: '#f1f5f9',
-                    color: '#0f172a',
+                    backgroundColor: '#252525',
+                    color: '#ffffff',
                     fontSize: '13px',
                     borderRadius: '6px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}>
                     Org: {selectedOrg}
                     <button
@@ -285,7 +328,7 @@ export default function Home() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#64748b',
+                        color: 'rgba(255, 255, 255, 0.5)',
                         cursor: 'pointer',
                         padding: '0',
                         fontSize: '16px',
@@ -297,13 +340,14 @@ export default function Home() {
                 {selectedService && (
                   <span style={{
                     padding: '4px 10px',
-                    backgroundColor: '#f1f5f9',
-                    color: '#0f172a',
+                    backgroundColor: '#252525',
+                    color: '#ffffff',
                     fontSize: '13px',
                     borderRadius: '6px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}>
                     Service: {selectedService}
                     <button
@@ -311,7 +355,7 @@ export default function Home() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#64748b',
+                        color: 'rgba(255, 255, 255, 0.5)',
                         cursor: 'pointer',
                         padding: '0',
                         fontSize: '16px',
@@ -323,13 +367,14 @@ export default function Home() {
                 {selectedRegion && (
                   <span style={{
                     padding: '4px 10px',
-                    backgroundColor: '#f1f5f9',
-                    color: '#0f172a',
+                    backgroundColor: '#252525',
+                    color: '#ffffff',
                     fontSize: '13px',
                     borderRadius: '6px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}>
                     Region: {selectedRegion}
                     <button
@@ -337,7 +382,7 @@ export default function Home() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#64748b',
+                        color: 'rgba(255, 255, 255, 0.5)',
                         cursor: 'pointer',
                         padding: '0',
                         fontSize: '16px',
@@ -356,7 +401,7 @@ export default function Home() {
                   style={{
                     padding: '4px 10px',
                     backgroundColor: 'transparent',
-                    color: '#64748b',
+                    color: 'rgba(255, 255, 255, 0.5)',
                     fontSize: '13px',
                     border: 'none',
                     cursor: 'pointer',

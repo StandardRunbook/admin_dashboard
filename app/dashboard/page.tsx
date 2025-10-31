@@ -57,16 +57,65 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="border-b border-white/10 backdrop-blur-xl bg-background/80 sticky top-0 z-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex h-16 items-center">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-stripe flex items-center justify-center">
-                <Activity className="h-4 w-4 text-white" />
+    <div style={{ minHeight: '100vh', backgroundColor: '#0a0a0a' }}>
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        backgroundColor: 'rgba(10, 10, 10, 0.8)',
+        backdropFilter: 'blur(12px)',
+      }}>
+        <div style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 24px',
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '64px',
+            justifyContent: 'space-between',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <Activity style={{ width: '18px', height: '18px', color: '#ffffff' }} />
               </div>
-              <span className="font-semibold">Metrics Dashboard</span>
+              <span style={{
+                fontSize: '20px',
+                fontWeight: '600',
+                color: '#ffffff',
+                letterSpacing: '-0.02em',
+              }}>Hover</span>
             </div>
+            <a
+              href="/create-mapping"
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4f46e5',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: '500',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4f46e5'}
+            >
+              + New Mapping
+            </a>
           </div>
         </div>
       </nav>

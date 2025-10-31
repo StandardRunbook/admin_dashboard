@@ -31,26 +31,73 @@ export default function CreateMappingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="border-b border-white/10 backdrop-blur-xl bg-background/80 sticky top-0 z-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => router.push('/')}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back to Home
-              </button>
-              <div className="h-6 w-px bg-border" />
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-stripe flex items-center justify-center">
-                  <Activity className="h-4 w-4 text-white" />
-                </div>
-                <span className="font-semibold">Create New Mapping</span>
+    <div style={{ minHeight: '100vh', backgroundColor: '#0a0a0a' }}>
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        backgroundColor: 'rgba(10, 10, 10, 0.8)',
+        backdropFilter: 'blur(12px)',
+      }}>
+        <div style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 24px',
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '64px',
+            justifyContent: 'space-between',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <Activity style={{ width: '18px', height: '18px', color: '#ffffff' }} />
               </div>
+              <span style={{
+                fontSize: '20px',
+                fontWeight: '600',
+                color: '#ffffff',
+                letterSpacing: '-0.02em',
+              }}>Hover</span>
             </div>
+            <button
+              onClick={() => router.push('/')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '8px 16px',
+                backgroundColor: 'transparent',
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontSize: '14px',
+                fontWeight: '500',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.color = '#ffffff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
+              }}
+            >
+              <ArrowLeft style={{ width: '16px', height: '16px' }} />
+              Back
+            </button>
           </div>
         </div>
       </nav>

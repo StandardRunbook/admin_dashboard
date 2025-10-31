@@ -42,9 +42,9 @@ export default function MetricMappingForm({ onSubmit }: MetricMappingFormProps) 
     width: '100%',
     padding: '10px 12px',
     fontSize: '14px',
-    color: '#0f172a',
-    backgroundColor: '#ffffff',
-    border: '1px solid #cbd5e1',
+    color: '#ffffff',
+    backgroundColor: '#252525',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
     borderRadius: '8px',
     outline: 'none',
   };
@@ -53,7 +53,7 @@ export default function MetricMappingForm({ onSubmit }: MetricMappingFormProps) 
     display: 'block',
     fontSize: '12px',
     fontWeight: '500',
-    color: '#475569',
+    color: 'rgba(255, 255, 255, 0.7)',
     marginBottom: '6px',
   };
 
@@ -71,110 +71,127 @@ export default function MetricMappingForm({ onSubmit }: MetricMappingFormProps) 
 
   return (
     <div style={{
-      backgroundColor: '#ffffff',
+      backgroundColor: '#1a1a1a',
       borderRadius: '16px',
       padding: '32px',
-      border: '1px solid #e2e8f0',
-      boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)'
+      border: '1px solid rgba(255, 255, 255, 0.1)',
     }}>
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '24px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', color: '#0f172a', marginBottom: '16px' }}>
-            Metric information
-          </h3>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-            <div>
-              <label htmlFor="org" style={labelStyle}>Organization</label>
-              <input
-                id="org"
-                type="text"
-                value={org}
-                onChange={(e) => setOrg(e.target.value)}
-                style={inputStyle}
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="dashboardName" style={labelStyle}>Dashboard</label>
-              <input
-                id="dashboardName"
-                type="text"
-                value={dashboardName}
-                onChange={(e) => setDashboardName(e.target.value)}
-                style={inputStyle}
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="panelTitle" style={labelStyle}>Panel title</label>
-              <input
-                id="panelTitle"
-                type="text"
-                value={panelTitle}
-                onChange={(e) => setPanelTitle(e.target.value)}
-                style={inputStyle}
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="metricName" style={labelStyle}>Metric name</label>
-              <input
-                id="metricName"
-                type="text"
-                value={metricName}
-                onChange={(e) => setMetricName(e.target.value)}
-                style={inputStyle}
-                required
-              />
-            </div>
-          </div>
-        </div>
-
-        <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '24px', marginBottom: '24px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', color: '#0f172a', marginBottom: '16px' }}>
-            Log stream details
-          </h3>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-            <div>
-              <label htmlFor="service" style={labelStyle}>Service</label>
-              <input
-                id="service"
-                type="text"
-                value={service}
-                onChange={(e) => setService(e.target.value)}
-                style={inputStyle}
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="region" style={labelStyle}>Region</label>
-              <input
-                id="region"
-                type="text"
-                value={region}
-                onChange={(e) => setRegion(e.target.value)}
-                style={inputStyle}
-                required
-              />
-            </div>
-          </div>
-
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '32px', marginBottom: '32px', alignItems: 'start' }}>
+          {/* Metric Side */}
           <div>
-            <label htmlFor="logStreamName" style={labelStyle}>Log stream name</label>
-            <input
-              id="logStreamName"
-              type="text"
-              value={logStreamName}
-              onChange={(e) => setLogStreamName(e.target.value)}
-              style={{...inputStyle, fontFamily: 'monospace'}}
-              required
-            />
+            <h3 style={{ fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '16px' }}>
+              Metric information
+            </h3>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div>
+                <label htmlFor="org" style={labelStyle}>Organization</label>
+                <input
+                  id="org"
+                  type="text"
+                  value={org}
+                  onChange={(e) => setOrg(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="dashboardName" style={labelStyle}>Dashboard</label>
+                <input
+                  id="dashboardName"
+                  type="text"
+                  value={dashboardName}
+                  onChange={(e) => setDashboardName(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="panelTitle" style={labelStyle}>Panel title</label>
+                <input
+                  id="panelTitle"
+                  type="text"
+                  value={panelTitle}
+                  onChange={(e) => setPanelTitle(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="metricName" style={labelStyle}>Metric name</label>
+                <input
+                  id="metricName"
+                  type="text"
+                  value={metricName}
+                  onChange={(e) => setMetricName(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingTop: '40px'
+          }}>
+            <div style={{
+              width: '1px',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              height: '300px'
+            }} />
+          </div>
+
+          {/* Log Stream Side */}
+          <div>
+            <h3 style={{ fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '16px' }}>
+              Log stream details
+            </h3>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div>
+                <label htmlFor="service" style={labelStyle}>Service</label>
+                <input
+                  id="service"
+                  type="text"
+                  value={service}
+                  onChange={(e) => setService(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="region" style={labelStyle}>Region</label>
+                <input
+                  id="region"
+                  type="text"
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="logStreamName" style={labelStyle}>Log stream name</label>
+                <input
+                  id="logStreamName"
+                  type="text"
+                  value={logStreamName}
+                  onChange={(e) => setLogStreamName(e.target.value)}
+                  style={{...inputStyle, fontFamily: 'monospace'}}
+                  required
+                />
+              </div>
+            </div>
           </div>
         </div>
 
