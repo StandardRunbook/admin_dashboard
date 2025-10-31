@@ -15,11 +15,19 @@ export async function GET() {
           ls.service,
           ls.region,
           ls.log_stream_name as logStreamName
-        FROM metric_log_mappings mm
-        FINAL
-        JOIN organizations o ON mm.org_id = o.id
-        JOIN metrics m ON mm.metric_id = m.id
-        JOIN log_streams ls ON mm.log_stream_id = ls.id
+        FROM (
+          SELECT id, created_at, org_id, metric_id, log_stream_id, is_active
+          FROM metric_log_mappings FINAL
+        ) mm
+        LEFT JOIN (
+          SELECT id, name FROM organizations FINAL
+        ) o ON mm.org_id = o.id
+        LEFT JOIN (
+          SELECT id, org_id, dashboard_name, panel_title, metric_name FROM metrics FINAL
+        ) m ON mm.metric_id = m.id
+        LEFT JOIN (
+          SELECT id, service, region, log_stream_name FROM log_streams FINAL
+        ) ls ON mm.log_stream_id = ls.id
         WHERE mm.is_active = 1
         ORDER BY mm.created_at DESC
       `,
