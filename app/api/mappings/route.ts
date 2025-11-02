@@ -39,7 +39,11 @@ export async function GET() {
     return NextResponse.json(mappings);
   } catch (error) {
     console.error('Error fetching mappings:', error);
-    return NextResponse.json({ error: 'Failed to fetch mappings' }, { status: 500 });
+    console.error('Error details:', error instanceof Error ? error.message : String(error));
+    return NextResponse.json({
+      error: 'Failed to fetch mappings',
+      details: error instanceof Error ? error.message : String(error)
+    }, { status: 500 });
   }
 }
 
