@@ -34,7 +34,8 @@ export async function GET() {
       format: 'JSONEachRow',
     });
 
-    const mappings = await result.json();
+    const data = await result.json();
+    const mappings = Array.isArray(data) ? data : [];
     return NextResponse.json(mappings);
   } catch (error) {
     console.error('Error fetching mappings:', error);

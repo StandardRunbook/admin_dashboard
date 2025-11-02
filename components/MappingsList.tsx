@@ -2,15 +2,23 @@
 
 import { useState } from 'react';
 import { MetricMapping } from '@/app/dashboard/page';
-import { Trash2, ChevronRight } from 'lucide-react';
+import { Trash2, ChevronRight, ChevronLeft } from 'lucide-react';
 
 type MappingsListProps = {
   mappings: MetricMapping[];
   onDelete: (id: string) => void;
 };
 
+const ITEMS_PER_PAGE = 10;
+
 export default function MappingsList({ mappings, onDelete }: MappingsListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(mappings.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedMappings = mappings.slice(startIndex, endIndex);
 
   if (mappings.length === 0) {
     return (
@@ -27,13 +35,14 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
   }
 
   return (
-    <div style={{
-      backgroundColor: '#1a1a1a',
-      borderRadius: '12px',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      overflow: 'hidden',
-    }}>
-      {mappings.map((mapping, index) => {
+    <div>
+      <div style={{
+        backgroundColor: '#1a1a1a',
+        borderRadius: '12px',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        overflow: 'hidden',
+      }}>
+        {paginatedMappings.map((mapping, index) => {
         const isExpanded = expandedId === mapping.id;
 
         return (
@@ -44,7 +53,7 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
               style={{
                 padding: '16px 20px',
                 cursor: 'pointer',
-                borderBottom: index < mappings.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+                borderBottom: index < paginatedMappings.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
                 transition: 'background-color 0.15s',
                 backgroundColor: isExpanded ? '#252525' : '#1a1a1a',
               }}
@@ -113,7 +122,7 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
               <div style={{
                 padding: '20px',
                 backgroundColor: '#252525',
-                borderBottom: index < mappings.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+                borderBottom: index < paginatedMappings.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
               }}>
                 {/* Content Grid */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
@@ -183,6 +192,92 @@ export default function MappingsList({ mappings, onDelete }: MappingsListProps) 
           </div>
         );
       })}
+      </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div style={{
+          marginTop: '16px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '12px 16px',
+          backgroundColor: '#1a1a1a',
+          borderRadius: '8px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        }}>
+          <button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            style={{
+              padding: '8px 12px',
+              backgroundColor: currentPage === 1 ? 'transparent' : '#252525',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '6px',
+              color: currentPage === 1 ? 'rgba(255, 255, 255, 0.3)' : '#ffffff',
+              cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontSize: '14px',
+              transition: 'all 0.15s',
+            }}
+            onMouseEnter={(e) => {
+              if (currentPage !== 1) {
+                e.currentTarget.style.backgroundColor = '#2a2a2a';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (currentPage !== 1) {
+                e.currentTarget.style.backgroundColor = '#252525';
+              }
+            }}
+          >
+            <ChevronLeft style={{ width: '16px', height: '16px' }} />
+            Previous
+          </button>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)' }}>
+              Page {currentPage} of {totalPages}
+            </span>
+            <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.4)' }}>
+              ({startIndex + 1}-{Math.min(endIndex, mappings.length)} of {mappings.length})
+            </span>
+          </div>
+
+          <button
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            style={{
+              padding: '8px 12px',
+              backgroundColor: currentPage === totalPages ? 'transparent' : '#252525',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '6px',
+              color: currentPage === totalPages ? 'rgba(255, 255, 255, 0.3)' : '#ffffff',
+              cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontSize: '14px',
+              transition: 'all 0.15s',
+            }}
+            onMouseEnter={(e) => {
+              if (currentPage !== totalPages) {
+                e.currentTarget.style.backgroundColor = '#2a2a2a';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (currentPage !== totalPages) {
+                e.currentTarget.style.backgroundColor = '#252525';
+              }
+            }}
+          >
+            Next
+            <ChevronRight style={{ width: '16px', height: '16px' }} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

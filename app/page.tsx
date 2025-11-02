@@ -34,6 +34,13 @@ export default function Home() {
   const fetchMappings = async () => {
     try {
       const response = await fetch('/api/mappings');
+
+      if (!response.ok) {
+        console.error('API responded with status:', response.status);
+        setMappings([]);
+        return;
+      }
+
       const data = await response.json();
 
       if (Array.isArray(data)) {
@@ -42,7 +49,7 @@ export default function Home() {
           createdAt: new Date(m.created_at),
         })));
       } else {
-        console.error('API error:', data);
+        console.error('API returned non-array data:', data);
         setMappings([]);
       }
     } catch (error) {
